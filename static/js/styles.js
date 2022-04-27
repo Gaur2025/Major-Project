@@ -8,8 +8,6 @@ $(function () {
     $(".contents").click(function (e) {
         e.stopPropagation();
     })
+
 })
 
-function updateRangeInput(elem) {
-    $(elem).next().val($(elem).val());
-}
