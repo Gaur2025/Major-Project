@@ -66,5 +66,5 @@ def predict():
 
 
 # Comment below code in production.
-# if __name__=='__main__':
-#     app.run()        
+if __name__=='__main__':
+    app.run()         

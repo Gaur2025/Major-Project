@@ -1,66 +1,833 @@
 <!DOCTYPE html>
-<html >
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<script src="{{ url_for('static', filename='js/styles.js') }}"></script>
+  <title>Major Project 2022</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="static/img/pec.jpg" rel="icon">
+  <link href="static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="static/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="static/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="static/css/style.css" rel="stylesheet">
+
   
-<title>Major Project</title>
+</head>
 
-
-
-</head>   
 <body>
- <div class="login">
-	<h1>Predict Aircraft Engine Failure</h1>  
 
-     <!-- Main Input For Receiving Query to our ML -->
-    <form  action="{{ url_for('predict')}}"method="post">
-    	 
-    	<input type="text" placeholder="setting1 (between -0.008 to 0.008)" aria-label="default input example" required='required' name="setting1">
-        <input type="text" placeholder="setting2  (between -0.0006 to 0.0006)" aria-label="default input example" required='required' name="setting2">
-        <input type="text" placeholder="sd2 (between 0.0 to 0.80)" aria-label="default input example" required='required' name="sd2">
-        <input type="text" placeholder="sd3 (between 0.0 to 12.50)" aria-label="default input example" required='required' name="sd3">
-        <input type="text" placeholder="sd4 (between 0.0 to 15.50)" aria-label="default input example" required='required' name="sd4">
-        <input type="text" placeholder="sd7 (between 0.0 to 1.50)" aria-label="default input example" required='required' name="sd7">
-        <input type="text" placeholder="sd8 (between 0.0 to 0.25)" aria-label="default input example" required='required' name="sd8">
-        <input type="text" placeholder="sd9 (between 0.0 to 13.00)" aria-label="default input example" required='required' name="sd9">
-        <input type="text" placeholder="sd11 (between 0.0 to 0.25)" aria-label="default input example" required='required' name="sd11">
-        <input type="text" placeholder="sd12 (between 0.0 to 0.90)" aria-label="default input example" required='required' name="sd12">
-        <input type="text" placeholder="sd13 (between 0.0 to 0.25)" aria-label="default input example" required='required' name="sd13"> 
-        <input type="text" placeholder="sd14 (between 0.0 to 10.00)" aria-label="default input example" required='required' name="sd14">
-        <input type="text" placeholder="sd15 (between 0.0 to 0.08)" aria-label="default input example" required='required' name="sd15">
-        <input type="text" placeholder="sd17 (between 0.0 to 3.00)" aria-label="default input example" required='required' name="sd17">
-        <input type="text" placeholder="sd20 (between 0.0 to 0.40)" aria-label="default input example" required='required' name="sd20">
-        <input type="text" placeholder="sd21 (between 0.0 to 0.20)" aria-label="default input example" required='required' name="sd21">
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope"></i> <a href="mailto:gaur.himanshugaur2025@gmail.com">gaur.himanshugaur2025@gmail.com</a>
+        <i class="bi bi-phone"></i> +91 8053728393
+      </div>
+      <div class="d-none d-lg-flex social-links align-items-center">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/gaur/" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      </div>
+    </div>
+  </div>
 
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-        
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
 
-         
-        <b>{{statement}}</b>
+      <!--<h1 class="logo me-auto"><a href="index.html">Major Project</a></h1>-->
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="index.html" class="logo me-auto"><img src="static/img/pec_centenary_logo.png" alt="" class="img-fluid"></a>
 
-        <!-- Footer (Credits)-->
-        <p class="footer-heart">
-          Made with <g-emoji class="g-emoji" alias="heart" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
-        <img class="emoji" alt="heart" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png"></g-emoji> as <a href="#">Major Project</a>
-        
-        <br>
-        <br>
-         <a href="https://github.com/Gaur2025/Major-Project">Visit to Github repository for more details</a>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">Algorithms</a></li>
+          <li><a class="nav-link scrollto" href="#departments">Workflow</a></li>
+          <li><a class="nav-link scrollto" href="#gallery">Visualizations</a></li>
 
-        
-    </form>
+          
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
 
+      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Prediction</a>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <h1>Major Project 2022</h1>
+      <h2>Predictive Maintenance of Aircraft Engines using Machine Learning Techniques</h2>
+      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4 d-flex align-items-stretch">
+            <div class="content">
+              <h3>Problem Statement?</h3>
+              <p>
+                Failure prediction is a major topic in predictive maintenance in many industries. Airlines are particularly 
+                interested in predicting equipment failures in advance so that they can enhance operations and reduce 
+                flight delays.
+                <br>
+                Observing engine's health and condition through sensors and telemetry data is assumed to facilitate this 
+                type of maintenance by predicting Time-To-Failure (TTF) or Remaining Useful Life (RUL) of in-service 
+                equipment. Using aircraft engine's sensors measurements, can we predict engine's TTF?
+              </p>
+              <div class="text-center">
+                <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="icon-boxes d-flex flex-column justify-content-center">
+              <div class="row">
+                <div class="col-xl-4 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-receipt"></i>
+                    <h4>Objectives</h4>
+                    <p>Estimate engine's time-to-failure and optimize its maintenance 
+                      operations accordingly.</p>
+                  </div>
+                </div>
+                <div class="col-xl-4 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-cube-alt"></i>
+                    <h4>Development</h4>
+                    <p>
+                      1. Backend (Python/Flask)
+                      <br>
+                      2. Jupyter Notebook
+                      <br>
+                      3. Matplotlib | Scikit-learn
+                      <br>
+                      4. Deployment: Heroku
+                    
+                    </p>
+                    
+
+                  </div>
+                </div>
+                <div class="col-xl-4 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="bx bx-images"></i>
+                    <h4>Deliverables</h4>
+                    <p>
+                      1. Project Report/Code
+                      <br>
+                      2. Well-documented Github Repo
+                      <br>
+                      3. Deployed Web-Application
+                      
+                    
+                    </p>
+                    
+                    
+                    
+                  </div>
+                </div>
+              </div>
+            </div><!-- End .content-->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a>
+          </div>
+
+          <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+            <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
+            <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
+
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-fingerprint"></i></div>
+              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            </div>
+
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-gift"></i></div>
+              <h4 class="title"><a href="">Nemo Enim</a></h4>
+              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            </div>
+
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-atom"></i></div>
+              <h4 class="title"><a href="">Dine Pad</a></h4>
+              <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="fas fa-user-md"></i>
+              <span data-purecounter-start="0" data-purecounter-end="85" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Doctors</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+            <div class="count-box">
+              <i class="far fa-hospital"></i>
+              <span data-purecounter-start="0" data-purecounter-end="18" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Departments</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="fas fa-flask"></i>
+              <span data-purecounter-start="0" data-purecounter-end="12" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Research Labs</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="fas fa-award"></i>
+              <span data-purecounter-start="0" data-purecounter-end="150" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Awards</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Services</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4><a href="">Lorem Ipsum</a></h4>
+              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-pills"></i></div>
+              <h4><a href="">Sed ut perspiciatis</a></h4>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-hospital-user"></i></div>
+              <h4><a href="">Magni Dolores</a></h4>
+              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-dna"></i></div>
+              <h4><a href="">Nemo Enim</a></h4>
+              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-wheelchair"></i></div>
+              <h4><a href="">Dele cardo</a></h4>
+              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-notes-medical"></i></div>
+              <h4><a href="">Divera don</a></h4>
+              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Prediction Section ======= -->
+    <section id="appointment" class="appointment section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Make an Prediction</h2>
+          <p>Fill the values to make a ML based prediction</p>
+        </div>
+
+        <form action="{{ url_for('predict')}}" method="post" >
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <input type="text" class="form-control" placeholder="setting1 (between -0.008 to 0.008)" aria-label="default input example" required='required' name="setting1">
+
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="text" class="form-control" placeholder="setting2  (between -0.0006 to 0.0006)" aria-label="default input example" required='required' name="setting2">
+
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="text" class="form-control" placeholder="sd2 (between 0.0 to 0.80)" aria-label="default input example" required='required' name="sd2">
+              
+              <div class="validate"></div>
+            </div>
+          </div>
+          <br>
+          
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <input type="text" class="form-control" placeholder="sd3 (between 0.0 to 12.50)" aria-label="default input example" required='required' name="sd3">
+
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="text" class="form-control" placeholder="sd4 (between 0.0 to 15.50)" aria-label="default input example" required='required' name="sd4">
+
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="text" class="form-control" placeholder="sd7 (between 0.0 to 1.50)" aria-label="default input example" required='required' name="sd7">
+
+              <div class="validate"></div>
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <input type="text" class="form-control" placeholder="sd8 (between 0.0 to 0.25)" aria-label="default input example" required='required' name="sd8">
+
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="text" class="form-control" placeholder="sd9 (between 0.0 to 13.00)" aria-label="default input example" required='required' name="sd9">
+
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="text" class="form-control" placeholder="sd11 (between 0.0 to 0.25)" aria-label="default input example" required='required' name="sd11">
+
+              <div class="validate"></div>
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <input type="text" class="form-control" placeholder="sd12 (between 0.0 to 0.90)" aria-label="default input example" required='required' name="sd12">
+
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="text" class="form-control" placeholder="sd13 (between 0.0 to 0.25)" aria-label="default input example" required='required' name="sd13"> 
+
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="text" class="form-control" placeholder="sd14 (between 0.0 to 10.00)" aria-label="default input example" required='required' name="sd14">
+
+              <div class="validate"></div>
+            </div>
+          </div>
+          <br>
+
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <input type="text" class="form-control" placeholder="sd15 (between 0.0 to 0.08)" aria-label="default input example" required='required' name="sd15">
+
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="text" class="form-control" placeholder="sd17 (between 0.0 to 3.00)" aria-label="default input example" required='required' name="sd17">
+
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="text" class="form-control" placeholder="sd20 (between 0.0 to 0.40)" aria-label="default input example" required='required' name="sd20">
+
+              <div class="validate"></div>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <input type="text" class="form-control" placeholder="sd21 (between 0.0 to 0.20)" aria-label="default input example" required='required' name="sd21">
+
+              <div class="validate"></div>
+            </div>
+          </div>
+          
+            
+            <div class="error-message"></div>
+            <div class="sent-message">{{statement}}</div>
+          </div>
+          <div class="text-center"><button class="appointment-btn scrollto" type="submit" >Make an Appointment</button></div>
+        </form>
+
+      </div>
+    </section><!-- End Appointment Section -->
+
+    <!-- ======= Departments Section ======= -->
+    <section id="departments" class="departments">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Departments</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row gy-4">
+          <div class="col-lg-3">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Cardiology</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Neurology</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Hepatology</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Pediatrics</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Eye Care</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-9">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="tab-1">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Cardiology</h3>
+                    <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
+                    <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="static/img/departments-1.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-2">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Et blanditiis nemo veritatis excepturi</h3>
+                    <p class="fst-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
+                    <p>Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis sunt sunt est. Non aliquid repellendus itaque accusamus eius et velit ipsa voluptates. Optio nesciunt eaque beatae accusamus lerode pakto madirna desera vafle de nideran pal</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="static/img/departments-2.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-3">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Impedit facilis occaecati odio neque aperiam sit</h3>
+                    <p class="fst-italic">Eos voluptatibus quo. Odio similique illum id quidem non enim fuga. Qui natus non sunt dicta dolor et. In asperiores velit quaerat perferendis aut</p>
+                    <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="static/img/departments-3.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-4">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Fuga dolores inventore laboriosam ut est accusamus laboriosam dolore</h3>
+                    <p class="fst-italic">Totam aperiam accusamus. Repellat consequuntur iure voluptas iure porro quis delectus</p>
+                    <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores sed qui veritatis aperiam quia a laborum inventore</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="static/img/departments-4.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-5">
+                <div class="row gy-4">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Est eveniet ipsam sindera pad rone matrelat sando reda</h3>
+                    <p class="fst-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
+                    <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="static/img/departments-5.jpg" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Departments Section -->
+
+    
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Some Important Questions</h2>
+          <p>Inferences are necesaary</p>
+        </div>
+
+        <div class="faq-list">
+          <ul>
+            <li data-aos="fade-up">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Question 1 <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                <p>
+                  Ans 1
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Question 2 <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Ans 2
+                 </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Question 3 <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                <p>
+              Ans 3
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Question 4 <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Ans 4
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="400">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Question 5 <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Ans 5
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </section><!-- End Frequently Asked Questions Section -->
+
+
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Visualizations</h2>
+          <p>“There is a magic in graphs. The proﬁle of a curve reveals in a ﬂash a whole situation — the life history of an epidemic, a panic, or an era of prosperity. The curve informs the mind, awakens the imagination, convinces.” ~ Henry D. Hubbard</p>
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row g-0">
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/lin-reg-residuals.png" class="galelry-lightbox">
+                <img src="static/img/gallery/lin-reg-residuals.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/lasso-reg-residuals.png" class="galelry-lightbox">
+                <img src="static/img/gallery/lasso-reg-residuals.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/dt-reg-residuals.png" class="galelry-lightbox">
+                <img src="static/img/gallery/dt-reg-residuals.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/rf-reg-residuals.png" class="galelry-lightbox">
+                <img src="static/img/gallery/rf-reg-residuals.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
    
- </div>
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/ridge-reg-residuals.png" class="galelry-lightbox">
+                <img src="static/img/gallery/ridge-reg-residuals.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
 
- 
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/poly-reg-residuals.png" class="galelry-lightbox">
+                <img src="static/img/gallery/poly-reg-residuals.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/features-std-deviation.png" class="galelry-lightbox">
+                <img src="static/img/gallery/features-std-deviation.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/features-corr-heatmap.png" class="galelry-lightbox">
+                <img src="static/img/gallery/features-corr-heatmap.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/viz-s6.png" class="galelry-lightbox">
+                <img src="static/img/gallery/viz-s6.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/viz-s7.png" class="galelry-lightbox">
+                <img src="static/img/gallery/viz-s7.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/viz-s9.png" class="galelry-lightbox">
+                <img src="static/img/gallery/viz-s9.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/viz-s11.png" class="galelry-lightbox">
+                <img src="static/img/gallery/viz-s11.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/viz-s12.png" class="galelry-lightbox">
+                <img src="static/img/gallery/viz-s12.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          
+
+          
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/mse-vs-rfe.png" class="galelry-lightbox">
+                <img src="static/img/gallery/mse-vs-rfe.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="static/img/gallery/auc-roc-best-models.png" class="galelry-lightbox">
+                <img src="static/img/gallery/auc-roc-best-models.png" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
+
+    
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Major Project</h3>
+            <h6>Production and Industrial Engineering</h6> 
+            <p>
+              <a class="logo me-auto"><img src="static/img/pec-logo.jpg" alt="" class="img-fluid"></a>
+            </p>
+          </div>
+
+          
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Algorithms</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Workflow</a></li>
+             
+            </ul>
+          </div>
+          
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Deliverables</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Project Report</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://github.com/Gaur2025/Major-Project">Code Repository</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Complete Data Analysis</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Visualizations</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Deployed Web-Application</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Github Repository</h4>
+            <p>For well-documented code and other details</p>
+            <a href="https://github.com/Gaur2025/Major-Project" class="github"></i>Visit Complete Code</a>
+            <br>
+            <br>
+            <p>
+              <strong>Mentor:</strong> Prof. Suman Kant <br>
+              <strong>Asst. Mentor:</strong> Prof. Mandeep Dhanda <br>
+              <strong>Phone:</strong> +91 9999999999<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+      <div class="me-md-auto text-center text-md-start">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Punjab Engineering College (Chandigarh)</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+          Designed by <a href="https://www.linkedin.com/in/gaur/">Himanshu Gaur | Gaurav Kumar | Nandan Kumar Tanti</a>
+        </div>
+      </div>
+      <div class="social-links text-center text-md-right pt-3 pt-md-0">
+        
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="https://www.linkedin.com/in/gaur/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="static/vendor/purecounter/purecounter.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="static/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="static/js/main.js"></script>
+
 </body>
 </html>

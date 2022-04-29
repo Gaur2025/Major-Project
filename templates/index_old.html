@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="{{ url_for('static', filename='js/style.js') }}"></script>
+  
+<title>Major Project</title>
+
+
+
+</head>   
+<body>
+ <div class="login">
+	<h1>Predict Aircraft Engine Failure</h1>  
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form  action="{{ url_for('predict')}}"method="post">
+    	 
+    	<input type="text" placeholder="setting1 (between -0.008 to 0.008)" aria-label="default input example" required='required' name="setting1">
+        <input type="text" placeholder="setting2  (between -0.0006 to 0.0006)" aria-label="default input example" required='required' name="setting2">
+        <input type="text" placeholder="sd2 (between 0.0 to 0.80)" aria-label="default input example" required='required' name="sd2">
+        <input type="text" placeholder="sd3 (between 0.0 to 12.50)" aria-label="default input example" required='required' name="sd3">
+        <input type="text" placeholder="sd4 (between 0.0 to 15.50)" aria-label="default input example" required='required' name="sd4">
+        <input type="text" placeholder="sd7 (between 0.0 to 1.50)" aria-label="default input example" required='required' name="sd7">
+        <input type="text" placeholder="sd8 (between 0.0 to 0.25)" aria-label="default input example" required='required' name="sd8">
+        <input type="text" placeholder="sd9 (between 0.0 to 13.00)" aria-label="default input example" required='required' name="sd9">
+        <input type="text" placeholder="sd11 (between 0.0 to 0.25)" aria-label="default input example" required='required' name="sd11">
+        <input type="text" placeholder="sd12 (between 0.0 to 0.90)" aria-label="default input example" required='required' name="sd12">
+        <input type="text" placeholder="sd13 (between 0.0 to 0.25)" aria-label="default input example" required='required' name="sd13"> 
+        <input type="text" placeholder="sd14 (between 0.0 to 10.00)" aria-label="default input example" required='required' name="sd14">
+        <input type="text" placeholder="sd15 (between 0.0 to 0.08)" aria-label="default input example" required='required' name="sd15">
+        <input type="text" placeholder="sd17 (between 0.0 to 3.00)" aria-label="default input example" required='required' name="sd17">
+        <input type="text" placeholder="sd20 (between 0.0 to 0.40)" aria-label="default input example" required='required' name="sd20">
+        <input type="text" placeholder="sd21 (between 0.0 to 0.20)" aria-label="default input example" required='required' name="sd21">
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+        
+
+         
+        <b>{{statement}}</b>
+
+        <!-- Footer (Credits)-->
+        <p class="footer-heart">
+          Made with <g-emoji class="g-emoji" alias="heart" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png">
+        <img class="emoji" alt="heart" height="20" width="20" src="https://github.githubassets.com/images/icons/emoji/unicode/2764.png"></g-emoji> as <a href="#">Major Project</a>
+        
+        <br>
+        <br>
+         <a href="https://github.com/Gaur2025/Major-Project">Visit to Github repository for more details</a>
+
+        
+    </form>
+
+   
+ </div>
+
+ 
+</body>
+</html>
