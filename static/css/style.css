@@ -794,6 +794,8 @@ section {
   margin-left: 85px;
   line-height: 24px;
   font-size: 14px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .about .video-box {
