@@ -42,16 +42,17 @@
         <i class="bi bi-phone"></i> +91 9306633949
       </div>
       <div class="d-none d-lg-flex social-links align-items-center">
-        <a href="" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="" class="instagram"><i class="bi bi-instagram"></i></a>
+        <!--
+        <a class="twitter"><i class="bi bi-twitter"></i></a>
+        <a class="facebook"><i class="bi bi-facebook"></i></a>
+        <a class="instagram"><i class="bi bi-instagram"></i></a>-->
         <a href="https://www.linkedin.com/in/gaur/" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
       </div>
     </div>
   </div>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top">
+  <header id="header" class="fixed-top">  
     <div class="container d-flex align-items-center">
 
       <!--<h1 class="logo me-auto"><a href="index.html">Major Project</a></h1>-->
@@ -88,7 +89,7 @@
 
   <main id="main">
 
-    <!-- ======= Why Us Section ======= -->
+    <!-- ======= Introduction Section (First View) ======= -->
     <section id="why-us" class="why-us">
       <div class="container">
 
@@ -521,10 +522,10 @@
           <div class="col-lg-3">
             <ul class="nav nav-tabs flex-column">
               <li class="nav-item">
-                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">EDA</a>
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Data Wrangling and EDA</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Features Engineering</a>
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Feature Engineering</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Model Training</a>
@@ -542,12 +543,36 @@
               <div class="tab-pane active show" id="tab-1">
                 <div class="row gy-4">
                   <div class="col-lg-8 details order-2 order-lg-1">
-                    <h3>Exploratory Data Analysis</h3>
+                    <h3>Data Wrangling and EDA</h3>
                     <p class="fst-italic">
-                      Something in Italics...maybe some quote
+                      The goal is to turn data into information and information into insight.
                     </p>
-                    <p>
-                      eda is done like this...
+                    <p style="text-align:justify; font-size:12px">
+                      All features columns are numeric with no missing values. 
+                      Regression and classification labels for training data were created as follows:
+                      <br>
+                      <br>
+                      1. Regression: Time-To-Failure TTF (no. of remaining cycle before failure) for each cycle/engine is the 
+                      number of cycles between that cycle and the last cycle of the same engine.
+                      <br>
+                      2. Binary Classification: if the remaining cycles is less than specific number of cycles (e.g. period = 
+                      30), the engine will fail in this period, otherwise the engine is fine.
+                      <br>
+                      3. Multiclass Classification: by segmenting the TTF into cycle bands (e.g. periods: 0-15, 16-30, 30+), 
+                      we could identify in which period will the engine fail.
+
+                      <br>
+                      <br>
+                      For test data, TTF is provided in a separate truth data file. These two files were merged and then 
+                      classification labels for test data were created the in the same way described above.
+
+                      <br>
+                      <br>
+                      <strong>Feature extraction</strong> is also applied to the training and test data by introducing additional two columns for 
+                      each of the 21 sensor columns: rolling mean and rolling standard deviation. This smoothing to the sensors 
+                      measurements over time would improve the performance of some machine learning algorithms.
+                      The final training and test data were saved to csv files ready for next steps of Feature Engineering and Modeling.                     
+
                     </p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
@@ -559,11 +584,21 @@
                 <div class="row gy-4">
                   <div class="col-lg-8 details order-2 order-lg-1">
                     <h3>Feature Engineering</h3>
-                    <p class="fst-italic">
-                      Something in Italics...maybe some quote
+                    <p class="fst-italic" style="text-align:justify;">
+                      Feature engineering is the process of transforming raw data into features that
+                      better represent the underlying problem to the predictive models, resulting
+                      in an improved model accuracy on unseen data.
                     </p>
-                    <p>
-                      Feature Engineering is done like this...
+                    <p style="text-align:justify; font-size:14px">
+                      1. There is a very high correlation (> 0.8) between some features e.g.: 
+                      (s14 & s9), (s11 & s4), (s11 & s7), (s11 & s12), (s4 & s12), (s8 & s13), (s7 & s12)
+                      This multicollinearity may hurt the performance of some machine learning algorithms. So, part of 
+                      these features will be target for elimination in feature selection during the modeling phase.
+                      <br>
+                      2. Most features have nonlinear relation with the TTF, hence adding their polynomial transforms may 
+                      enhance models performance.
+                      <br> 
+                      3. Most features exhibit normal distribution which is likely improves models performance.
                     </p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
@@ -575,11 +610,15 @@
                 <div class="row gy-4">
                   <div class="col-lg-8 details order-2 order-lg-1">
                     <h3>Model Training</h3>
-                    <p class="fst-italic">
-                      Something in Italics...maybe some quote
+                    <p class="fst-italic" style="text-align:justify;">
+                      "You can have data without information, but you cannot have information without data."
                     </p>
-                    <p>
-                      Model Training is done like this...
+                    <p style="text-align:justify; font-size:14px">
+                      After EDA and Feature Engineering, several classifcation and regression models were trained.
+                      <br>
+                      Main algorithms are discussed in algorithms section.
+                      Performace of models is evaluated using several performance metrics like,
+                      Accuracy, precision, F1 score, Confusion Matrix, etc.
                     </p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
@@ -592,10 +631,14 @@
                   <div class="col-lg-8 details order-2 order-lg-1">
                     <h3>Backend/Frontend</h3>
                     <p class="fst-italic">
-                      Something in Italics...maybe some quote
+                      A effecient backend and frontend is crucial for end-to-end deployment.
                     </p>
-                    <p>
-                      Backend/Frontend is done like this...
+                    <p style="text-align:justify; font-size:14px">
+                      Tech-stack used are as follows:-
+                      <br>
+                      1. Backend : Jupyter Notebook, Python, Flask, Javascript, Git
+                      <br>
+                      2. Frontend : HTML, CSS, Javascript, Flask (Web Framework)
                     </p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
@@ -608,10 +651,12 @@
                   <div class="col-lg-8 details order-2 order-lg-1">
                     <h3>Deployment</h3>
                     <p class="fst-italic">
-                      Something in Italics...maybe some quote
+                      Deployment is necessary for real-life application of ML Solution.
                     </p>
-                    <p>
-                      Deployment is done like this...
+                    <p style="text-align:justify; font-size:14px">
+                      Git, Heroku, and Heroku CLI are used to deploy the ML model created. 
+                      <br>
+                      Hosting is also done on Heroku. 
                     </p>
                   </div>
                   <div class="col-lg-4 text-center order-1 order-lg-2">
@@ -627,7 +672,7 @@
     </section><!-- End Workflow Section -->
 
     
-    <!-- ======= Frequently Asked Questions Section ======= -->
+    <!-- ======= Frequently Asked Questions Section =======
     <section id="faq" class="faq section-bg">
       <div class="container">
 
@@ -675,7 +720,7 @@
             </li>
 
             <li data-aos="fade-up" data-aos-delay="400">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Question 5 <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Why Flask for Backend? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
                 <p>
                   Ans 5
@@ -687,8 +732,9 @@
         </div>
 
       </div>
-    </section><!-- End Frequently Asked Questions Section -->
-
+    </section>-->
+    <!-- End Frequently Asked Questions Section -->
+  
 
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery">
@@ -905,11 +951,11 @@
         </div>
       </div>
       <div class="social-links text-center text-md-right pt-3 pt-md-0">
-        
-        <a href="" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="" class="facebook"><i class="bx bxl-facebook"></i></a>
-        <a href="" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <!--
+        <a class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a class="instagram"><i class="bx bxl-instagram">
+        <a class="google-plus"><i class="bx bxl-skype"></i></a>-->
         <a href="https://www.linkedin.com/in/gaur/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
     </div>
