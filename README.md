@@ -41,5 +41,4 @@ By exploring the aircraft engine’s sensor values over time, the machine learni
 - __Multiclass classification__ algorithms were used predict in which cycles window or period will an engine will fail.
 
 
-The project is deployed on the heroku platform.
-[https://major-gaur.herokuapp.com/](https://major-gaur.herokuapp.com/)
+
